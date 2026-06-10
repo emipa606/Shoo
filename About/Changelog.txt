@@ -1,5 +1,8 @@
 # Changelog for Shoo
 
+1.6.1 - russian translation added, thanks tzverg
+
+
 1.6.0 - First publish
 Used DeepL to update translations for ChineseSimplified, French, German
 
