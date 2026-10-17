@@ -4,7 +4,7 @@ using Verse;
 namespace Shoo;
 
 [DefOf]
-internal class ShooDefOf
+internal static class ShooDefOf
 {
     public static DesignationDef Shoo;
 

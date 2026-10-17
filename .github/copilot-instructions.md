@@ -1,37 +1,53 @@
-Below is the content for the `.github/copilot-instructions.md` file, tailored for the "Shoo! (Continued)" RimWorld mod project. 
-
-
-# Copilot Instructions for Shoo! (Continued) RimWorld Mod
+# Shoo! (Continued) GitHub Copilot Instructions
 
 ## Mod Overview and Purpose
-*Shoo! (Continued)* is an updated version of the mod originally created by jamaicancastles, now supporting RimWorld version 1.5 as of update 3/16/24. The primary purpose of the mod is to introduce a humane method to manage wild animals that tend to wander into player-controlled colonies, potentially disrupting construction and agriculture. By adding a "Shoo" designator accessible through the Orders menu, players can command pawns with animal handling skills to guide wild animals out of the colony territory.
+
+Shoo! (Continued) is an updated version of the original Shoo! mod by jamaicancastle, now supporting RimWorld version 1.5. This mod adds a unique gameplay mechanic by introducing a designator that allows players to harmlessly "shoo" wild animals away from their base. The purpose of the mod is to provide players with a tool to manage wildlife interactions with their colony without causing harm to animals, especially during construction phases or when securing fields from potential pests.
 
 ## Key Features and Systems
-- **Shoo Designator:** Found in the Orders menu or when selecting a wild animal. Directs pawns to shoo animals away, helping to maintain colony order and safety.
-- **Animal Behavior Adjustments:** Introduces a chance system based on animal size and taming difficulty. Wilder, larger animals are harder to influence, and failure can result in the need for a cooldown period before retrying.
-- **Automatic Navigation:** Animals will navigate through available doors when being shooed. They are, however, blocked by fences unless a gate is provided, requiring strategic placement by players.
-- **Dynamic Risk Assessment:** Incorporates a minor risk element where dangerous animals may attack if disturbed.
-- **Game Compatibility:** Safe to add to existing games and designed to be removable, provided certain conditions are met regarding ongoing shoo instructions.
+
+- **Shoo Designator**: Added to the Orders menu, the Shoo designator enables pawns with the Handling skill to shoo animals away. It is also accessible when a wild animal is selected.
+- **Animal Behavior Adjustments**: When animals are shooed, they will navigate through doors automatically. However, they remain blocked by fences unless a gate is available.
+- **Difficulty Variations**: Larger and wilder animals possess a higher chance of resisting shooing attempts, influenced by the pawn's taming skill. Failed attempts lead to cooldowns, and there is a minor chance for dangerous animals to become aggressive.
+- **Compatibility**: Safe to add or remove mid-game, given certain conditions regarding ongoing shooing actions and marked animals.
 
 ## Coding Patterns and Conventions
-- **Class and File Organization:** Separate files host distinct classes for individual functionalities, such as `Designator_Shoo.cs`, `JobDriver_Shoo.cs`, and `WorkGiver_Shoo.cs`.
-- **Naming Conventions:** PascalCase for class and method names, following C# conventions. Internal classes use `internal` modifier for encapsulation.
+
+- **Naming Conventions**: Follow C# standard practices with PascalCase for class names and members, and camelCase for variables.
+- **File Structure**: Organize classes by function, such as `Designator_Shoo.cs` for designator functionalities and `JobDriver_Shoo.cs` for associated job behaviors.
+- **Commenting**: Provide descriptive comments for complex methods to aid understanding and maintainability.
 
 ## XML Integration
-- XML files should define designations and job drivers for the interactions. Ensure consistency in XML naming with those in C# definitions, e.g., references for job definitions or designations should align with the in-game registry.
+
+- **Patches.xml**: Utilizes XML for defining content patches, important for ensuring compatibility and integration with the core game.
+- **Localization Support**: Translations of job and work giver definitions are managed through respective XML files to support multiple languages.
 
 ## Harmony Patching
-- **Harmony Version:** Make use of Harmony 2.0 for patching, as it is bundled with the mod. Avoid compatibility issues with Harmony 1.x by ensuring no similar mods are running concurrently.
-- **Patch Usage:** Apply patches primarily to methods affecting animal behavior and GUI updates for designators, ensuring smooth integration with the base game.
+
+- **Library Inclusion**: The mod includes the Harmony 2.0 patching library to modify existing game behavior without altering original game files.
+- **Patching Methods**: Commonly used postfix methods, e.g., `Building_Door_PawnCanOpen`, ensure smooth integration of new behaviors and features.
 
 ## Suggestions for Copilot
-- **Expand Methods:** Copilot can assist in detailing methods for specific functionalities, such as optimizing `FindShooFleeCell` for more efficient pathfinding based on pawn skills and animal behavior.
-- **Utility Functions:** Develop utility functions for repetitive actions, like checking for available exits or calculating cooldown effects based on animal and pawn stats.
-- **Error Handling:** Implement error handling routines around player actions, particularly in `JobDriver_Shoo` for scenarios involving dangerous animal interactions.
-- **Testing Stubs:** Create testing scenarios for the mod's logic to assist in debugging and testing steps before releases.
-- **Code Comments:** Use detailed inline comments to clarify complex logic, especially around the Harmony patches and job assignments.
 
-For more detailed discussions, join the Ludeon forums or connect with other developers via linked discord channels and community resources.
+- Assist in generating more Harmony patches by suggesting appropriate postfix or prefix methods.
+- Aid in defining XML content easily by providing boilerplate XML structures or suggesting common property tags.
+- Enhance efficiency in coding repeated C# patterns such as new job drivers or designators.
+- Offer suggestions to debug compatibility issues across different mod configurations.
+
+This file serves as a comprehensive guide for using GitHub Copilot effectively in the continued development of Shoo! (Continued). Through proper understanding of its features and systems combined with coherent coding practices, contributors can maintain and expand the mod confidently.
+
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
 
 
-This document is structured to provide a comprehensive guide for developers using GitHub Copilot in conjunction with this mod, promoting seamless development and mod maintenance.
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+

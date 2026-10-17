@@ -24,14 +24,14 @@ internal class Designator_Shoo : Designator
 
     public override DrawStyleCategoryDef DrawStyleCategory => DrawStyleCategoryDefOf.Orders;
 
-    public override AcceptanceReport CanDesignateCell(IntVec3 c)
+    public override AcceptanceReport CanDesignateCell(IntVec3 loc)
     {
-        if (!c.InBounds(Map))
+        if (!loc.InBounds(Map))
         {
             return false;
         }
 
-        if (!huntablesInCell(c).Any())
+        if (!huntablesInCell(loc).Any())
         {
             return "MessageMustDesignateShooable".Translate();
         }
@@ -39,9 +39,9 @@ internal class Designator_Shoo : Designator
         return true;
     }
 
-    public override void DesignateSingleCell(IntVec3 loc)
+    public override void DesignateSingleCell(IntVec3 c)
     {
-        foreach (var current in huntablesInCell(loc))
+        foreach (var current in huntablesInCell(c))
         {
             DesignateThing(current);
         }

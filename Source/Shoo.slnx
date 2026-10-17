@@ -6,4 +6,18 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Shoo/Shoo.csproj" />
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Designators.xml" />
+  </Folder>
+  <Folder Name="/XML/Patches/">
+    <File Path="../Patches/Patches.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/">
+    <File Path="../Defs/Designations.xml" />
+    <File Path="../Defs/Jobs.xml" />
+    <File Path="../Defs/WorkGivers.xml" />
+  </Folder>
 </Solution>

@@ -5,12 +5,10 @@ using Verse;
 namespace Shoo;
 
 [HarmonyPatch(typeof(ReverseDesignatorDatabase), "InitDesignators")]
-internal class ReverseDesignatorDatabase_InitDesignators
+internal static class ReverseDesignatorDatabase_InitDesignators
 {
-    public static void Postfix(ref ReverseDesignatorDatabase __instance)
+    public static void Postfix(ref List<Designator> ___desList)
     {
-        var desList =
-            AccessTools.Field(typeof(ReverseDesignatorDatabase), "desList").GetValue(__instance) as List<Designator>;
-        desList?.Add(new Designator_Shoo());
+        ___desList?.Add(new Designator_Shoo());
     }
 }
